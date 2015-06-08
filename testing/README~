@@ -7,9 +7,3 @@ Coverage testing
 	cover.sh
 	test.sh
 	testing/cover.sh
-
-John coverage testing
-	install.sh (once)
-	cover.sh
-	test_john.sh
-	testing/cover.sh
