@@ -25,7 +25,7 @@ output_dir_array=("dimer_decay_output_case2-" "heat_shock_mass_action_output_cas
 count=0
 
 # run the loop 
-for (( index = 0 ; index < ${#models_array[@]} ; index++ ))
+for (( index = 0 ; index < ${#model_array[@]} ; index++ ))
 do
     # set up selected items
     output_options_item=${output_options_array[$index]}
@@ -37,6 +37,7 @@ do
     
     #print what we are doing
     printf -v count_pad "%02d" $count
+    echo "we made it"
     echo "case$count_pad" "$model_item" "$output_item" "$interval_item"
 
     if [ ! -d "$cur_dir/logs/case$count_pad" ]
