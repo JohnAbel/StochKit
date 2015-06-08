@@ -5,22 +5,22 @@ cur_dir=$(pwd -P)
 cd ..
 
 # options for each of the trials
-output_options_array=("" "" "" "--keep-trajectories" "--keep-histograms")
+output_options_array=("" "" "" "--keep-trajectories" "--keep-histograms" "" "" "" "")
 
 # options for seeds
-seed_array=("75052381" "1398073729" "5680007" "1077743024" "2118936082")
+seed_array=("75052381" "1398073729" "5680007" "1077743024" "2118936082" "5" "" "6" "8")
 
 # options for models
-model_array=("dimer_decay.xml" "heat_shock_mass_action.xml" "heat_shock_mixed.xml" "heat_shock_10x.xml" "events1.xml")
+model_array=("dimer_decay.xml" "heat_shock_mass_action.xml" "heat_shock_mixed.xml" "heat_shock_10x.xml" "schlogl.xml" "simple1p.xml" "stochkit_6_reaction_mixed.xml" "events1.xml" "stochkit_events.xml")
 
 # options for intervals
-interval_array=("-i 2" "" "" "" "")
+interval_array=("-i 2" "" "" "" "" "" "" "" "")
 
 # options for solvers
-method_array=("DM" "ODM" "ConstantTime" "NRM" "")
+method_array=("DM" "ODM" "ConstantTime" "NRM" "" "" "" "" "")
 
 # options for outputs
-output_dir_array=("dimer_decay_output_case2-" "heat_shock_mass_action_output_case2-" "heat_shock_mixed_output_case2-" "heat_shock_10x_output_case2-" "events1_output_case2-")
+output_dir_array=("dimer_decay_output_case2-" "heat_shock_mass_action_output_case2-" "heat_shock_mixed_output_case2-" "heat_shock_10x_output_case2-" "schlogl_output_case2-" "simple1p_output_case2-" "stochkit_6_reaction_mixed_output_case2-" "events1_output_case2-" "stochkit_events_output_case2-")
 
 count=0
 
