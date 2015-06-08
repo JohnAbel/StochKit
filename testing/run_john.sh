@@ -46,7 +46,7 @@ do
     fi
 
     #run the solver
-    ./ssa -m "models/examples/$model_item" -t 10 -r 10 $interval_item --out-dir "models/examples/$output_dir_item$count_pad" "$output_item" -f --seed "$seed_item" >"$cur_dir/logs/case$count_pad/stdout2.txt" 2>&1
+    ./ssa -m "models/examples/$model_item" -t 10 -r 10 --method $method_item $interval_item --out-dir "models/examples/$output_dir_item$count_pad" "$output_item" -f --seed "$seed_item" >"$cur_dir/logs/case$count_pad/stdout2.txt" 2>&1
 
     let count=count+1
 
