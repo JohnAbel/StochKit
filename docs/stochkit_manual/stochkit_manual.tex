@@ -138,6 +138,7 @@
 \title{Stochkit 2.1 Manual}
 \author{The Petzold Group}
 
+
 % This command is great to only print out a certain chapter, keeping references etc from other chapters.
 % \includeonly{chap6/chap6, chap7/chap7}
 
@@ -508,6 +509,19 @@ Consult your cluster documentation for more detailed information about running M
 \section{Troubleshooting}
 \subsection{Downloading and installation}
 \subsection{Running a simulation}
+
+In the Windows full version of StochKit2, if you are using the command interpreter (cmd.exe) instead of the Visual Studio Command Prompt, you have to set the path to ``msbuild'' in the ``path'' environment variable as described in the Windows installation instructions (Installation\_instructions.pdf).
+
+Most simulation problems are due to errors in the model definition file.  Attempts were made to display meaningful error messages but not all errors can be caught by the software.  Problems in customized propensity functions and events are particularly difficult to detect.
+Some bugs in the model definition file can be detected by running the ``single\_trajectory'' in the ``custom\_drivers/single\_trajectory'' directory. 
+\begin{itemize}
+    \item Linux/UNIX/Mac OS X: Navigate to custom\_drivers/single\_trajectory/. Then run: ./single\_trajectory -m <your model file> -t <simulation time>.
+    \item Windows (full version only): In Windows Explorer, navigate to the custom\_drivers folder.  Double click on custom\_drivers.sln.  Set to ``Release'' mode and build the solution.  When the compilation completes, navigate on the Visual Studio command line to the StochKit ``bin\textbackslash'' directory. Then run: .\textbackslash single\_trajectory -m <your model file> -t <simulation time>.
+\end{itemize}
+Hopefully, the program will detect a problem (e.g. a negative population or a propensity that equals infinity) which you can then use to fix your model file.  The single\_trajectory driver may not discover all bugs and does not work with models that include events.
+
+See below for a list of common simulation error messages.  If you believe you have found a bug in the StochKit2 software, please email the StochKit2 Team at: StochKit@cs.ucsb.edu.  Please include the error message you received, your operating system, and the version of StochKit you are using.
+
 \subsection{Common error messages}
 \begin{itemize}
     \item \texttt{StochKit ERROR (CommandLineInterface::parse): missing required parameter(s).  Run with --help for a list of required and optional parameters.}
@@ -524,8 +538,9 @@ The entered command contains an unrecognized string.  Usually occurs due to a ty
     this will take a few moments...
 'msbuild' is not recognized as an internal or external command, operable program or batch file.
 StochKit ERROR: compile of generated code failed. Simulation terminated.
-Check log file ``<path to generatedCode >\compile-log.txt'' for error messages.}
+Check log file ``<path to generatedCode >compile-log.txt'' for error messages.}
 This occurs in the Windows version and is caused by using the command interpreter (cmd.exe) instead of the Visual Studio Command Prompt and not having the ``msbuild'' compiler in your path.  Use the Visual Studio Command Prompt or correctly build the windows version by closely following the Windows installation instructions (Installation\_instructions.pdf).  NOTE: the file compile-log.txt will not exist because the compile command was not executed. 
+\end{itemize}
 
 \subsection{SBML converter}
 For troubleshooting the SBML converter, see the documentation in  tools/\texttt{SBMLconverter/documentation.pdf}.
