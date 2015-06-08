@@ -508,15 +508,39 @@ Consult your cluster documentation for more detailed information about running M
 \section{Troubleshooting}
 \subsection{Downloading and installation}
 \subsection{Running a simulation}
-\subsubsection{Common error messages}
+\subsection{Common error messages}
+\begin{itemize}
+    \item \texttt{StochKit ERROR (CommandLineInterface::parse): missing required parameter(s).  Run with --help for a list of required and optional parameters.}
+At least one of the required command-line parameters is missing.  The required form is: ./<driver name> -m <model file name> -t <simulation time> -r <number of realizations> <additional optional arguments>
+    \item \texttt{StochKit ERROR (StandardDriverUtilities::createOutputDirs): output directory "<output directory name>" already exists. Delete existing directory, use --out-dir to specify a unique directory name, or run with --force to overwrite.}
+StochKit2 drivers create an output directory when they are run.  By default, StochKit2 won’t let you overwrite an existing directory.
+    \item \texttt{StochKit ERROR (StandardDriverUtilities::createOutputDirs): error creating output directory.}
+This often happens if the output directory already exists and a file within that directory is open in another program.  This creates a filesystem lock file so the directory cannot be deleted.  Quit the program that is using the file or specify a different output directory using the ``--out-dir'' option.
+    \item \texttt{StochKit ERROR (CommandLineInterface::parse): unable to parse command-line arguments.  Run with --help for a list of required and optional parameters.}
+The entered command contains an unrecognized string.  Usually occurs due to a typo when entering the command.
+\item \texttt{ssa: Command not found.} Cause: forgot to put ``./'' before the command or installation/compilation failed.
+\item StochKit crashes and the log contains something like: \texttt{boost::exponential\_distribution<RealType>::exponential\_distribution(RealType) [with RealType = double]: Assertion \_lambda > result\_type(0)' failed.}  This is usually caused by a propensity sum that is ``not a number,'' due to a propensity that evaluates to infinity (e.g. a custom propensity function that divides by zero) or similar error.  Try running the single\_trajectory\_debug custom driver as described above.
+    \item \texttt{StochKit MESSAGE: compiling generated code...
+    this will take a few moments...
+'msbuild' is not recognized as an internal or external command, operable program or batch file.
+StochKit ERROR: compile of generated code failed. Simulation terminated.
+Check log file ``<path to generatedCode >\compile-log.txt'' for error messages.}
+This occurs in the Windows version and is caused by using the command interpreter (cmd.exe) instead of the Visual Studio Command Prompt and not having the ``msbuild'' compiler in your path.  Use the Visual Studio Command Prompt or correctly build the windows version by closely following the Windows installation instructions (Installation\_instructions.pdf).  NOTE: the file compile-log.txt will not exist because the compile command was not executed. 
+
 \subsection{SBML converter}
+For troubleshooting the SBML converter, see the documentation in  tools/\texttt{SBMLconverter/documentation.pdf}.
+
 \subsection{Plotting tools}
+The most common errors for plotting are typos in the path or filename or incorrect arguments.  The different plotting functions take different arguments--check the examples for the proper form.
 
 \section{Known bugs}
+A list of known bugs is maintained on sourceforge.net.  Visit \texttt{http://sourceforge.net/projects/stochkit/support} and select ``Bugs.''
 
 \section{License}
+StochKit2 (version 2.0.5 and later) is distributed under the BSD 3-Clause License (``BSD New'' or ``BSD Simplified''). Use of StochKit2 is subject to the license agreement.  See LICENSE.txt in the main StochKit directory.
 
 \section{Contact information and bug reporting}
+The StochKit team welcomes your feedback on the software.  Please send comments, questions, enhancement ideas, and suspected bugs via the GitHub issues page. We will work to address these issues in a timely fashion.
 
 \clearpage
 \section{Glossary of terms}
