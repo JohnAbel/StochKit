@@ -5,5 +5,8 @@
 cd testing
 
 date
-./run_john.sh
+./run2.sh
+echo
+date
+./run2_tau.sh
 
